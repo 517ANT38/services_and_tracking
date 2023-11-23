@@ -4,7 +4,11 @@ COPY . /app/.
 RUN mvn -f /app/pom.xml clean package -Dmaven.test.skip=true
 
 FROM eclipse-temurin:17-jre-alpine
+VOLUME /tmp
+
 WORKDIR /app
 COPY --from=builder /app/target/*.jar /app/consumer.jar
+COPY --from=builder --chmod=0755 /app/run.sh /run.sh
 EXPOSE 8081
-ENTRYPOINT ["java", "-jar", "/app/consumer.jar"]
+
+ENTRYPOINT ["/run.sh"]

@@ -13,11 +13,11 @@ services:
   #   container_name: producer
   #   ports:
   #     - "8080:8080"
-  # consumer:
-  #   image: serv/consumer
-  #   container_name: consumer
-  #   ports:
-  #     - "8081:8081"
+  consumer:
+    image: serv/consumer
+    container_name: consumer
+    ports:
+      - "8081:8081"
 
   zookeeper:
     image: zookeeper:3.7.0
