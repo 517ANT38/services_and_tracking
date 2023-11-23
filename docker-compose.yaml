@@ -11,6 +11,8 @@ services:
     container_name: producer
     ports:
       - "8080:8080"
+    environment:
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT:  http://zipkinserver:9411/api/v2/spans
     depends_on:
       - kafka
       - zipkin
@@ -22,6 +24,8 @@ services:
     container_name: consumer
     ports:
       - "8081:8081"
+    environment:
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT:  http://zipkinserver:9411/api/v2/spans
     depends_on:
       - db
       - kafka
