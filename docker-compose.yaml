@@ -1,9 +1,6 @@
 version: "3.7"
 
-networks:
-  kafka-net:
-    name: kafka-net
-    driver: bridge
+
  
   
 
@@ -16,6 +13,7 @@ services:
       - "8080:8080"
     depends_on:
       - kafka
+      - zipkin
     
       
 
@@ -27,6 +25,7 @@ services:
     depends_on:
       - db
       - kafka
+      - zipkin
     
    
 
@@ -92,7 +91,7 @@ services:
 
   zipkin:
     image: openzipkin/zipkin
-    container_name: zipkin
+    container_name: zipkinserver
     ports:
       - "9411:9411"
 
