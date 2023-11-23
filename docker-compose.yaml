@@ -4,15 +4,21 @@ networks:
   kafka-net:
     name: kafka-net
     driver: bridge
+ 
   
 
 services:
 
-  # producer:
-  #   image: serv/producer
-  #   container_name: producer
-  #   ports:
-  #     - "8080:8080"
+  producer:
+    image: serv/producer
+    container_name: producer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+    
+      
+
   consumer:
     image: serv/consumer
     container_name: consumer
@@ -20,13 +26,14 @@ services:
       - "8081:8081"
     depends_on:
       - db
+      - kafka
+    
+   
 
   zookeeper:
     image: zookeeper:3.7.0
     container_name: zookeeper
     restart: "no"
-    networks:
-      - kafka-net
     ports:
       - "2181:2181"
 
@@ -34,8 +41,6 @@ services:
     image: obsidiandynamics/kafka
     container_name: kafka
     restart: "no"
-    networks:
-      - kafka-net
     ports:
       - "9092:9092"
     environment:
@@ -53,8 +58,6 @@ services:
     image: obsidiandynamics/kafdrop
     container_name: kafdrop
     restart: "no"
-    networks:
-      - kafka-net
     ports:
       - "9000:9000"
     environment:
@@ -63,8 +66,8 @@ services:
       - "kafka"
   
   db:
-    image: postgres
-    container_name: db
+    image: postgres 
+    container_name: postgres   
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -73,6 +76,8 @@ services:
     ports:
       - "5432:5432"
     
+      
+    
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -80,6 +85,10 @@ services:
       PGADMIN_DEFAULT_PASSWORD: "root"
     ports:
       - "5050:80"
+    depends_on:
+      - db
+      
+    
 
   zipkin:
     image: openzipkin/zipkin
