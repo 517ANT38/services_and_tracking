@@ -8,7 +8,7 @@ VOLUME /tmp
 
 WORKDIR /app
 COPY --from=builder /app/target/*.jar /app/producer.jar
-COPY --from=builder --chmod=0755 /app/run.sh /run.sh
+COPY --from=builder --chmod=0755 /app/build-elements/run.sh /run.sh
 EXPOSE 8080
 
 ENTRYPOINT ["/run.sh"]
