@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.micrometer.observation.annotation.Observed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,8 @@ public class Scheduler {
 
     private final Random random;
     private final KafkaTemplate<String, String> kafkaTemplate;
-    private static final String orderTopic = "${topic.name}";
+    @Value("${topic.name}")
+    private String orderTopic;
     private final ObjectMapper objectMapper;
     private Long count1 = 0L;
     private Long count2 = 0L;
