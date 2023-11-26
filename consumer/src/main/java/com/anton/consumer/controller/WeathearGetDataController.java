@@ -23,22 +23,18 @@ public class WeathearGetDataController {
     private final WeatherService wService;
 
     @GetMapping("/data")
-    @Observed(name = "weathear_data_get_all")
     public ResponseEntity<List<WeatherDataDto>> getDataAll(){
         return ResponseEntity.ok(wService.selecWeatherDataDtosBy());
     }
-    @GetMapping("/constData")
-    @Observed(name = "const_weathear_data_get_all")
+    @GetMapping("/constData")    
     public ResponseEntity<List<ConstWeatherDataDto>> getConstDataAll(){
         return ResponseEntity.ok(wService.selectConstWeatherDataDtos());
     }
-    @GetMapping("/data/tempr/{t}")
-    @Observed(name = "weathear_data_get_all")
+    @GetMapping("/data/tempr/{t}")    
     public ResponseEntity<List<WeatherDataDto>> getDataByTempr(@PathVariable("t") Double t){
         return ResponseEntity.ok(wService.selecWeatherDataDtosByT(t));
     }
-    @GetMapping("/data/spendWinter/{s}")
-    @Observed(name = "weathear_data_get_all")
+    @GetMapping("/data/spendWinter/{s}")    
     public ResponseEntity<List<WeatherDataDto>> getDataBySpendWinter(@PathVariable("s") Double s){
         return ResponseEntity.ok(wService.selecWeatherDataDtosByS(s));
     }
