@@ -23,8 +23,7 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
-    @PostMapping
-    @Observed(name="send_post_message_weather_data")
+    @PostMapping   
     public String createFoodOrder(@RequestBody WeatherData weatherData) throws JsonProcessingException {
        return weatherService.createWeatherInfo(weatherData);
     }

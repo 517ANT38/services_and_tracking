@@ -4,6 +4,7 @@ import com.anton.producer.domain.WeatherData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.micrometer.observation.annotation.Observed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +29,7 @@ public class Producer {
         this.objectMapper = objectMapper;
     }
 
-    
+     @Observed(name="send_post_message_weather_producer")
     public String sendMessage(WeatherData weatherData) throws JsonProcessingException {
         String orderAsMessage = objectMapper.writeValueAsString(weatherData);
         kafkaTemplate.send(weTopic, orderAsMessage);
