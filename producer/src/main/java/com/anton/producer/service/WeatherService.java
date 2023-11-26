@@ -20,7 +20,7 @@ public class WeatherService {
         this.producer = producer;
     }
     
-    @Observed(name="send_post_message_weather_data_service")
+    @Observed(contextualName="send_post_message_weather_data_service")
     public String createWeatherInfo(WeatherData weatherData) throws JsonProcessingException {
         return producer.sendMessage(weatherData);
     }

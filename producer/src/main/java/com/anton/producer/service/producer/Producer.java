@@ -29,7 +29,7 @@ public class Producer {
         this.objectMapper = objectMapper;
     }
 
-     @Observed(name="send_post_message_weather_producer")
+    @Observed(contextualName="send_post_message_weather_producer")
     public String sendMessage(WeatherData weatherData) throws JsonProcessingException {
         String orderAsMessage = objectMapper.writeValueAsString(weatherData);
         kafkaTemplate.send(weTopic, orderAsMessage);

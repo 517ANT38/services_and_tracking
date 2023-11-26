@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConstWeatherDataRepository extends JpaRepository<ConstWeatherData, Long> {
-    @Observed(name = "findAll_trace")
+    @Observed(contextualName = "findAll_trace")
     List<ConstWeatherData> findAll();
 
-    @Observed(name = "save_trace")
+    @Observed(contextualName = "save_trace")
     ConstWeatherData save(ConstWeatherData c);
 }

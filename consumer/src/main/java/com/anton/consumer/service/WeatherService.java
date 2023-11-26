@@ -31,7 +31,7 @@ public class WeatherService {
         this.constWeatherDataRepository = constWeatherDataRepository;
     }
 
-    @Observed(name = "wd_consumer_persist")
+    @Observed(contextualName = "wd_consumer_persist")
     public void persistWeatherData(WeatherDataDto weatherDataDto) {
         WeatherData weatherData = modelMapper.map(weatherDataDto, WeatherData.class);
         WeatherData persistedWeatherData = weatherDataRepository.save(weatherData);
@@ -39,35 +39,35 @@ public class WeatherService {
 
     }
 
-    @Observed(name = "const_wd_consumer_persist")
+    @Observed(contextualName = "const_wd_consumer_persist")
     public void persistConstWeatherData(ConstWeatherDataDto constWeatherData) {
         ConstWeatherData weatherData = modelMapper.map(constWeatherData,ConstWeatherData.class);
         ConstWeatherData persistedWeatherData = constWeatherDataRepository.save(weatherData);
 
 
     }
-    @Observed(name = "const_weathear_data_get_all")
+    @Observed(contextualName = "const_weathear_data_get_all")
     public List<ConstWeatherDataDto> selectConstWeatherDataDtos(){
         return constWeatherDataRepository.findAll().stream()
             .map(x -> modelMapper.map(x, ConstWeatherDataDto.class))
             .toList();
     }
 
-    @Observed(name = "weathear_data_get_all")
+    @Observed(contextualName = "weathear_data_get_all")
     public List<WeatherDataDto> selecWeatherDataDtosBy(){
         return weatherDataRepository.findAll().stream()
             .map(x -> modelMapper.map(x, WeatherDataDto.class))
             .toList();
     }
 
-    @Observed(name = "weathear_data_get_all")
+    @Observed(contextualName = "weathear_data_get_all")
     public List<WeatherDataDto> selecWeatherDataDtosByT(Double t){
         return weatherDataRepository.findByTempr(t).stream()
             .map(x -> modelMapper.map(x, WeatherDataDto.class))
             .toList();
     }
 
-    @Observed(name = "weathear_data_get_all")
+    @Observed(contextualName = "weathear_data_get_all")
     public List<WeatherDataDto> selecWeatherDataDtosByS(Double s){
         return weatherDataRepository.findBySpendWinter(s).stream()
             .map(x -> modelMapper.map(x, WeatherDataDto.class))

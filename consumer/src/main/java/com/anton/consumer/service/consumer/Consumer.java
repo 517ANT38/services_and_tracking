@@ -28,14 +28,14 @@ public class Consumer {
     }
 
     @KafkaListener(topics = orderTopic)
-    @Observed(name = "wd_consumer")
+    @Observed(contextualName = "wd_consumer")
     public void consumeMessage1(String message) throws JsonProcessingException {
         WeatherDataDto weatherDataDto = objectMapper.readValue(message, WeatherDataDto.class);
         weatherService.persistWeatherData(weatherDataDto);
     }
 
     @KafkaListener(topics = "t.const.weather")
-    @Observed(name = "const_wd_consumer")
+    @Observed(contextualName = "const_wd_consumer")
     public void consumeMessage2(String message) throws JsonProcessingException {
         var weatherDataDto = objectMapper.readValue(message, ConstWeatherDataDto.class);
         weatherService.persistConstWeatherData(weatherDataDto);

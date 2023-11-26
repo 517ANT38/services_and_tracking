@@ -37,7 +37,7 @@ public class Scheduler {
     }
 
     @Scheduled(fixedRate = 1000)
-    @Observed(name="scheduled_send_weather_data")
+    @Observed(contextualName="scheduled_send_weather_data")
     public void sendMessage() throws JsonProcessingException {
         count1++;
         String dataAsMessage = objectMapper.writeValueAsString(Map.of(
@@ -49,7 +49,7 @@ public class Scheduler {
     }
 
     @Scheduled(fixedRate = 2000)
-    @Observed(name="scheduled_send_weather_data_two")
+    @Observed(contextualName="scheduled_send_weather_data_two")
     public void sendMessageTwo() throws JsonProcessingException {
         count1++;
         String dataAsMessage = objectMapper.writeValueAsString(Map.of(
@@ -61,7 +61,7 @@ public class Scheduler {
     }
 
     @Scheduled(fixedRate = 3000)
-    @Observed(name="scheduled_send_weather_data_three")
+    @Observed(contextualName="scheduled_send_weather_data_three")
     public void sendMessageThree() throws JsonProcessingException {
         count1++;
         String dataAsMessage = objectMapper.writeValueAsString(Map.of(
@@ -73,7 +73,7 @@ public class Scheduler {
     }
 
     @Scheduled(fixedRate = 1000)
-    @Observed(name="send_message_wea_t")
+    @Observed(contextualName="send_message_wea_t")
     public void sendMessageWea() throws JsonProcessingException {
         count2++;
         String dataAsMessage = objectMapper.writeValueAsString(new WeatherData(
@@ -87,7 +87,7 @@ public class Scheduler {
     }
 
     @Scheduled(fixedRate = 2000)
-    @Observed(name="send_message_wea_t2")
+    @Observed(contextualName="send_message_wea_t2")
     public void sendMessageWeaTwo() throws JsonProcessingException {
         count2++;
         String dataAsMessage = objectMapper.writeValueAsString(new WeatherData(
@@ -101,7 +101,7 @@ public class Scheduler {
     }
 
     @Scheduled(fixedRate = 3000)
-    @Observed(name="send_message_wea_t3")
+    @Observed(contextualName="send_message_wea_t3")
     public void sendMessageWeaThree() throws JsonProcessingException {
         count2++;
         String dataAsMessage = objectMapper.writeValueAsString(new WeatherData(

@@ -15,16 +15,16 @@ import io.micrometer.observation.annotation.Observed;
 public interface WeatherDataRepository extends JpaRepository<WeatherData, Long> {
 
     @Query("select w from WeatherData w where w.tempr <= :t")
-    @Observed(name = "findByTempr_trace")
+    @Observed(contextualName = "findByTempr_trace")
     List<WeatherData> findByTempr(@Param("t") Double t);
 
     @Query("select w from WeatherData w where w.spendWinter <= :s")
-    @Observed(name = "findBySpendWinter_trace")
+    @Observed(contextualName = "findBySpendWinter_trace")
     List<WeatherData> findBySpendWinter(@Param("s") Double s);
 
-    @Observed(name = "findAll_trace")
+    @Observed(contextualName = "findAll_trace")
     List<WeatherData> findAll();
 
-    @Observed(name = "save_trace")
+    @Observed(contextualName = "save_trace")
     WeatherData save(WeatherData w);
 }
