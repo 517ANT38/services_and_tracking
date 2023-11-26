@@ -3,7 +3,7 @@ for((i=0;i<$1;i++))
 do
 
     curl  -X POST \
-  "http://localhost:$2/weather" \
+  "http://$2:$3/weather" \
   --header 'Accept: */*' \
   --header 'Content-Type: application/json' \
   --data-raw "{
