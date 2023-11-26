@@ -7,6 +7,7 @@ import com.anton.consumer.domain.dto.ConstWeatherDataDto;
 import com.anton.consumer.domain.dto.WeatherDataDto;
 import com.anton.consumer.repository.WeatherDataRepository;
 
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,34 @@ public class WeatherService {
 
     
     public void persistConstWeatherData(ConstWeatherDataDto constWeatherData) {
-        ConstWeatherData weatherData = modelMapper.map(constWeatherData, ConstWeatherData.class);
+        ConstWeatherData weatherData = modelMapper.map(constWeatherData,ConstWeatherData.class);
         ConstWeatherData persistedWeatherData = constWeatherDataRepository.save(weatherData);
 
 
     }
+
+    public List<ConstWeatherDataDto> selectConstWeatherDataDtos(){
+        return constWeatherDataRepository.findAll().stream()
+            .map(x -> modelMapper.map(x, ConstWeatherDataDto.class))
+            .toList();
+    }
+
+    public List<WeatherDataDto> selecWeatherDataDtosBy(){
+        return weatherDataRepository.findAll().stream()
+            .map(x -> modelMapper.map(x, WeatherDataDto.class))
+            .toList();
+    }
+
+    public List<WeatherDataDto> selecWeatherDataDtosByT(Double t){
+        return weatherDataRepository.findByTempr(t).stream()
+            .map(x -> modelMapper.map(x, WeatherDataDto.class))
+            .toList();
+    }
+
+    public List<WeatherDataDto> selecWeatherDataDtosByS(Double s){
+        return weatherDataRepository.findBySpendWinter(s).stream()
+            .map(x -> modelMapper.map(x, WeatherDataDto.class))
+            .toList();
+    }
+    
 }
