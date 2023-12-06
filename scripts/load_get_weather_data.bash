@@ -40,10 +40,10 @@ function getDataOrConstDataWeather3(){
 
 } 
 
-getDataOrConstDataWeather0 $3 $1 $2 & 
+getDataOrConstDataWeather0 $3 $1 $2 
 
-getDataOrConstDataWeather1 $4 $1 $2 & 
+getDataOrConstDataWeather1 $4 $1 $2 
 
-getDataOrConstDataWeather2 $5 $1 $2 & 
+getDataOrConstDataWeather2 $5 $1 $2 
 
-getDataOrConstDataWeather3 $6 $1 $2 &
+getDataOrConstDataWeather3 $6 $1 $2
